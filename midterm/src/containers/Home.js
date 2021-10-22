@@ -1,42 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
-import HolidayCard from "../components/Holiday";
 
 const FOX_URL = `https://randomfox.ca/floof/`;
-
-function useQuery() {
-	return new URLSearchParams(useLocation().search);
-}
+const WORD_URL = `https://random-words-api.vercel.app/word`;
+//const refresh = false;
 
 function Home() {
 	const [fox, setFox] = useState();
-	const [country, setCountry] = useState();
-	const [holidayData, setHoliday] = useState();
-	let query = useQuery();
-
-	const HOLIDAY_API = `https://date.nager.at/api/v3/publicholidays/2022/${country}`;
+	const [wordData, setWord] = useState();
 
 	useEffect(() => {
-		const countryCode = query.get("country");
-		setCountry(countryCode);
-	}, [query]);
-
-	useEffect(() => {
-		if (country) {
-			axios
-				.get(HOLIDAY_API)
-				.then(function (response) {
-					setHoliday(response.data);
-				})
-				.catch(function (error) {
-					console.warn(error);
-				});
-		}
-	}, [country]);
-
-	useEffect(() => {
-		if (country) {
+		//if (refresh) {
 			axios
 				.get(FOX_URL)
 				.then(function (response) {
@@ -46,18 +20,27 @@ function Home() {
 					// handle error
 					console.warn(error);
 				});
-		}
-	}, [country]);
+		//}
+	}, []);
+
+  useEffect(() => {
+		//if (refresh) {
+			axios
+				.get(WORD_URL)
+				.then(function (response) {
+          console.log(response.data[0].word);
+					setWord(response.data[0]);
+				})
+				.catch(function (error) {
+					// handle error
+					console.warn(error);
+				});
+		//}
+	}, []);
 
 	return (
 		<main>
 			<img src={fox} alt="A random image of a duck"></img>
-
-			<div>
-				{holiday.map((holiday, key) => (
-					<Holiday holiday={holiday} key={key} />
-				))}
-			</div>
 		</main>
 	);
 }
