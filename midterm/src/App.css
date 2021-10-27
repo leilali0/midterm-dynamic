@@ -1,9 +1,52 @@
 .App {
-  margin: 20px auto;
-  margin-left: 450px;
+  margin: 40px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title{
+  font-size: 30px;
+  padding-bottom: 20px;
 }
 
 .fox img{
-  width: 500px;
-  height: auto;
+  width: auto;
+  height: 500px;
+  padding-bottom: 20px;
+}
+
+.text{
+  font-size: 20px;
+  padding-bottom: 30px;
+}
+
+.word{
+  text-align: center;
+  font-size: 25px;
+}
+
+.button{
+  background-color: #ffaf03;
+  border: none;
+  border-radius: 10px;
+  color: black;
+  font-size: 18px;
+  padding: 8px 36px;
+}
+
+.button:hover {
+  background-color: #f5a214;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.24);
+}
+
+@media (max-width: 800px) {
+  .title{
+    font-size: 24px;
+  }
+
+  .fox img{
+    width: 400px;
+    height: auto;
+  }
 }

@@ -47,15 +47,20 @@ function Home() {
 
 	return (
 		<main className="App">
+
+			<div className="title">
+				<h1>The Word of the Day</h1>
+			</div>	
+
 			<div className="fox">
 				<img src={fox} alt="A random image of a duck" ></img>
 			</div>
 
+			<div className="text">
 			<Word wordInfo={wordInfo} definition={definition} />
+			</div>
 
-			<div>
-      <button onClick={refreshPage}>Next</button>
-   		</div>
+      <button className="button" onClick={refreshPage}>Next</button>
 		</main>
 	);
 }
